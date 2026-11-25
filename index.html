@@ -1,0 +1,505 @@
+<!doctype html>
+<html lang="sv">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Posters UF</title>
+<meta name="description" content="Posters UF – vi skapar posters till ett bra pris som gör ditt rum personligt.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Anton&family=IBM+Plex+Mono:wght@500;600&family=Source+Serif+4:ital,opsz,wght@0,8..60,400;0,8..60,600;1,8..60,400&display=swap" rel="stylesheet">
+<style>
+  :root{
+    color-scheme:light;
+    --bg:#E8DCC0;
+    --surface:#F1E7CF;
+    --fg:#5C1414;
+    --fg-soft:#8A5A42;
+    --line:#D9C7A2;
+    --accent:#A41E1E;
+    --accent-ink:#F0D9C9;
+    --font-display:'Anton',sans-serif;
+    --font-body:'Source Serif 4',Georgia,serif;
+    --font-mono:'IBM Plex Mono',monospace;
+  }
+  [hidden]{display:none!important}
+  *{box-sizing:border-box;}
+  body{
+    margin:0;
+    background:var(--bg);
+    color:var(--fg);
+    font-family:var(--font-body);
+    font-size:16px;
+    line-height:1.55;
+    padding-left:max(16px, env(safe-area-inset-left,0px));
+    padding-right:max(16px, env(safe-area-inset-right,0px));
+  }
+  .wrap{max-width:980px;margin:0 auto;}
+  main.stack{display:flex;flex-direction:column;gap:56px;padding-block:40px 64px;}
+
+  a{color:var(--accent);}
+  h1,h2,h3{font-family:var(--font-display);text-transform:uppercase;letter-spacing:.01em;text-wrap:balance;margin:0;}
+
+  header.top{display:flex;align-items:baseline;justify-content:space-between;gap:12px;padding-top:28px;flex-wrap:wrap;}
+  .wordmark{font-family:var(--font-display);font-size:clamp(40px,8vw,64px);line-height:1;letter-spacing:.03em;margin:0;font-weight:400;}
+  .wordmark span{color:var(--accent);}
+  .tag{font-family:var(--font-mono);font-size:11px;letter-spacing:.08em;color:var(--fg-soft);border:1px solid var(--line);padding:4px 10px;border-radius:99px;white-space:nowrap;}
+
+  .hero p{max-width:46ch;color:var(--fg-soft);font-size:17px;margin-top:14px;}
+  .idea{max-width:46ch;color:var(--fg);font-size:18px;font-style:italic;margin:14px 0 0;padding-left:14px;border-left:3px solid var(--accent);}
+  .hero .price-line{font-family:var(--font-mono);font-size:13px;letter-spacing:.04em;color:var(--fg);margin-top:18px;}
+  .hero .price-line b{color:var(--accent);}
+
+  .grid{display:grid;grid-template-columns:repeat(3,1fr);gap:28px;}
+  @media (max-width:760px){.grid{grid-template-columns:1fr;gap:36px;}}
+
+  .card{display:flex;flex-direction:column;gap:12px;}
+  .art{
+    aspect-ratio:3/4;
+    border-radius:4px;
+    position:relative;
+    overflow:hidden;
+    box-shadow:0 18px 30px -16px rgba(0,0,0,.45);
+    transform:rotate(var(--tilt,-2deg));
+    transition:transform .35s ease;
+  }
+  .card:hover .art, .card:focus-within .art{transform:rotate(0deg) scale(1.015);}
+
+  .art-vinyl{
+    background:#121011;
+    background-image:
+      repeating-radial-gradient(circle at 50% 56%, transparent 0 7px, rgba(255,255,255,.05) 7px 8px),
+      radial-gradient(circle at 50% 56%, #1c1816 0 18%, #121011 19% 100%);
+  }
+  .art-vinyl::after{
+    content:"";position:absolute;left:50%;top:56%;width:28%;height:28%;transform:translate(-50%,-50%);
+    border-radius:50%;background:var(--accent);
+    box-shadow:inset 0 0 0 2px rgba(0,0,0,.5);
+  }
+  .art-vinyl::before{
+    content:"";position:absolute;left:50%;top:56%;width:5%;height:5%;transform:translate(-50%,-50%);
+    border-radius:50%;background:#121011;z-index:1;
+  }
+  .art-vinyl .label{position:absolute;left:0;right:0;bottom:10%;text-align:center;font-family:var(--font-display);color:#E8DFCF;font-size:13px;letter-spacing:.14em;}
+
+  .art-espresso{
+    background:
+      radial-gradient(circle at 30% 24%, rgba(240,223,196,.35), transparent 42%),
+      radial-gradient(circle at 70% 70%, rgba(240,223,196,.18), transparent 50%),
+      linear-gradient(160deg,#5A3524,#311C13);
+  }
+  .art-espresso .ring{position:absolute;border:2px solid rgba(240,223,196,.5);border-radius:50%;}
+  .art-espresso .ring1{width:46%;height:46%;left:27%;top:14%;}
+  .art-espresso .ring2{width:30%;height:30%;left:52%;top:50%;border-color:rgba(240,223,196,.3);}
+  .art-espresso .steam{position:absolute;width:10%;height:40%;left:44%;top:4%;background:rgba(240,223,196,.22);border-radius:50%;filter:blur(6px);}
+  .art-espresso .label{position:absolute;left:0;right:0;bottom:10%;text-align:center;font-family:var(--font-display);color:#F0DFC4;font-size:13px;letter-spacing:.14em;}
+
+  .art-expect{background:linear-gradient(180deg,#EFE8D9,#E4DBC6);}
+  .art-expect::before{
+    content:"E";position:absolute;right:-6%;top:-10%;font-family:var(--font-display);font-size:230px;color:rgba(92,20,20,.07);line-height:1;
+  }
+  .art-expect .stripe{position:absolute;left:0;top:62%;width:140%;height:16%;background:var(--accent);transform:rotate(-7deg);transform-origin:left center;opacity:.92;}
+  .art-expect .label{position:absolute;left:0;right:0;bottom:10%;text-align:center;font-family:var(--font-display);color:#5C1414;font-size:13px;letter-spacing:.14em;z-index:1;}
+
+  .card h3{font-size:22px;}
+  .card .mood{color:var(--fg-soft);font-size:14.5px;font-style:italic;max-width:30ch;margin:0;}
+  .card .row{display:flex;align-items:center;justify-content:space-between;gap:10px;margin-top:4px;}
+  .price-tag{font-family:var(--font-mono);font-size:14px;letter-spacing:.03em;background:var(--accent-ink);color:var(--accent);padding:4px 10px;border-radius:3px;}
+  .btn{
+    font-family:var(--font-mono);font-size:13px;letter-spacing:.03em;text-transform:uppercase;
+    background:var(--fg);color:var(--bg);border:none;border-radius:3px;padding:10px 16px;cursor:pointer;
+    text-decoration:none;display:inline-block;
+  }
+  .btn.outline{background:transparent;color:var(--fg);border:1px solid var(--line);}
+  .btn:hover{opacity:.85;}
+
+  .order{background:var(--surface);border:1px solid var(--line);border-radius:10px;padding:28px;display:flex;flex-direction:column;gap:18px;}
+  .order h2{font-size:26px;}
+  .order .sub{color:var(--fg-soft);font-size:14.5px;margin:4px 0 0;}
+  .lines{display:flex;flex-direction:column;gap:10px;}
+  .line{display:flex;align-items:center;gap:12px;padding:10px 12px;border:1px solid var(--line);border-radius:6px;}
+  .line label{display:flex;align-items:center;gap:10px;flex:1;cursor:pointer;font-size:15px;}
+  .line input[type=checkbox]{width:18px;height:18px;accent-color:var(--accent);}
+  .line .p{font-family:var(--font-mono);color:var(--fg-soft);font-size:13.5px;margin-left:auto;}
+  .total{display:flex;justify-content:space-between;align-items:baseline;font-family:var(--font-mono);font-size:15px;padding-top:6px;border-top:1px dashed var(--line);}
+  .total .amt{font-size:22px;color:var(--accent);}
+  .save{font-size:12.5px;color:var(--fg-soft);}
+
+  .msgbox{display:flex;flex-direction:column;gap:8px;}
+  .msgbox textarea{
+    width:100%;min-height:150px;resize:vertical;font-family:var(--font-mono);font-size:13px;line-height:1.5;
+    background:var(--bg);color:var(--fg);border:1px solid var(--line);border-radius:6px;padding:12px;
+  }
+  .actions{display:flex;gap:10px;flex-wrap:wrap;}
+  .contact-row{display:flex;align-items:center;gap:10px;flex-wrap:wrap;font-family:var(--font-mono);font-size:14px;}
+  .qr-box{display:flex;align-items:center;gap:18px;flex-wrap:wrap;padding:14px;border:1px solid var(--line);border-radius:8px;background:var(--bg);}
+  .qr-box svg{width:150px;height:150px;display:block;border-radius:4px;background:#fff;}
+  .qr-box .qr-txt{display:flex;flex-direction:column;gap:4px;font-size:14.5px;max-width:32ch;}
+  .qr-box .qr-txt b{font-family:var(--font-mono);letter-spacing:.03em;}
+  .fields{display:grid;grid-template-columns:1fr 1fr;gap:12px;}
+  @media (max-width:600px){.fields{grid-template-columns:1fr;}}
+  .fields label{display:flex;flex-direction:column;gap:4px;font-family:var(--font-mono);font-size:12px;letter-spacing:.04em;text-transform:uppercase;color:var(--fg-soft);}
+  .fields .wide{grid-column:1/-1;}
+  .fields input{font-family:var(--font-body);font-size:16px;color:var(--fg);background:var(--bg);border:1px solid var(--line);border-radius:6px;padding:10px 12px;text-transform:none;letter-spacing:0;}
+  .fields input:focus{outline:2px solid var(--accent);outline-offset:1px;}
+  .ordernr{display:flex;justify-content:space-between;align-items:baseline;font-family:var(--font-mono);font-size:14px;}
+  .ordernr b{font-size:18px;color:var(--accent);letter-spacing:.04em;}
+  .swish-btn{margin-top:8px;text-align:center;}
+  .copied{font-size:12.5px;color:var(--accent);min-height:1em;}
+
+  .steps{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;}
+  @media (max-width:760px){.steps{grid-template-columns:1fr;}}
+  .step{display:flex;flex-direction:column;gap:6px;}
+  .step .n{font-family:var(--font-display);font-size:28px;color:var(--accent);}
+  .step p{margin:0;font-size:14.5px;color:var(--fg-soft);}
+
+  footer{display:flex;flex-direction:column;gap:16px;border-top:1px solid var(--line);padding-top:24px;}
+  .footer-row{display:flex;justify-content:space-between;align-items:center;gap:16px;flex-wrap:wrap;}
+  .swish-chip{
+    display:inline-flex;align-items:center;gap:8px;border:1px dashed var(--line);color:var(--fg-soft);
+    font-family:var(--font-mono);font-size:12.5px;padding:8px 12px;border-radius:99px;
+  }
+  .fine{font-size:12.5px;color:var(--fg-soft);}
+</style>
+</head>
+<body>
+
+<div class="wrap">
+  <header class="top">
+    <div>
+      <h1 class="wordmark">POSTERS<span> UF</span></h1>
+      <p class="idea">Vi skapar posters till ett bra pris &mdash; som gör ditt rum personligt.</p>
+    </div>
+    <div class="tag">UF-FÖRETAG</div>
+  </header>
+
+  <main class="stack">
+
+    <section class="hero">
+      <p>Välj den som passar din vägg &mdash; eller ta alla tre och spara 90 kr.</p>
+      <div class="price-line">299 KR / ST &nbsp;&middot;&nbsp; ALLA TRE <b>807 KR</b></div>
+    </section>
+
+    <section class="grid" id="products">
+      <article class="card" style="--tilt:-3deg">
+        <div class="art art-vinyl">
+          <span class="label">VINYL</span>
+        </div>
+        <h3>Vinyl</h3>
+        <p class="mood">Mörk, varm, analog &mdash; för rummet som vill låta högt i tysthet.</p>
+        <div class="row">
+          <span class="price-tag">299 KR</span>
+          <button class="btn order-btn" data-poster="vinyl">Beställ</button>
+        </div>
+      </article>
+
+      <article class="card" style="--tilt:2deg">
+        <div class="art art-espresso">
+          <span class="ring ring1"></span>
+          <span class="ring ring2"></span>
+          <span class="steam"></span>
+          <span class="label">ESPRESSO</span>
+        </div>
+        <h3>Espresso</h3>
+        <p class="mood">Djupt brun och vaken &mdash; en kickstart för väggen.</p>
+        <div class="row">
+          <span class="price-tag">299 KR</span>
+          <button class="btn order-btn" data-poster="espresso">Beställ</button>
+        </div>
+      </article>
+
+      <article class="card" style="--tilt:-2deg">
+        <div class="art art-expect">
+          <span class="stripe"></span>
+          <span class="label">EXPECT</span>
+        </div>
+        <h3>Expect</h3>
+        <p class="mood">Ljus, spänd, väntande &mdash; plats för det som kommer.</p>
+        <div class="row">
+          <span class="price-tag">299 KR</span>
+          <button class="btn order-btn" data-poster="expect">Beställ</button>
+        </div>
+      </article>
+    </section>
+
+    <section class="order" id="order">
+      <div>
+        <h2>Beställ</h2>
+        <p class="sub">Kryssa i vad du vill ha. Tar du alla tre räknas mängdrabatten automatiskt.</p>
+      </div>
+
+      <div class="lines">
+        <div class="line">
+          <label><input type="checkbox" class="poster-check" value="vinyl" data-name="Vinyl"> Vinyl</label>
+          <span class="p">299 kr</span>
+        </div>
+        <div class="line">
+          <label><input type="checkbox" class="poster-check" value="espresso" data-name="Espresso"> Espresso</label>
+          <span class="p">299 kr</span>
+        </div>
+        <div class="line">
+          <label><input type="checkbox" class="poster-check" value="expect" data-name="Expect"> Expect</label>
+          <span class="p">299 kr</span>
+        </div>
+        <div class="line" style="border-style:dashed;">
+          <label><input type="checkbox" class="poster-check" value="test" data-name="Testposter" data-price="1"> Testposter <span class="fine">(för att testa betalning)</span></label>
+          <span class="p">1 kr</span>
+        </div>
+      </div>
+
+      <div class="total">
+        <span>Totalt</span>
+        <span><span class="amt" id="totalAmt">0 kr</span></span>
+      </div>
+      <div class="ordernr"><span>Ordernummer</span><b id="orderNr"></b></div>
+      <div><button class="btn outline" id="clearBtn" type="button">Rensa</button></div>
+      <div class="save" id="saveNote" hidden>Mängdrabatt vid alla tre: &minus;90 kr jämfört med styckpris.</div>
+
+      <div class="fields">
+        <label>Namn<input type="text" id="fName" class="cust" autocomplete="name"></label>
+        <label>Telefon<input type="tel" id="fPhone" class="cust" autocomplete="tel"></label>
+        <label class="wide">Leveransadress<input type="text" id="fAddr" class="cust" autocomplete="street-address" placeholder="Gata, postnummer, ort (eller ”avhämtning”)"></label>
+      </div>
+
+      <div class="msgbox">
+        <div class="fine">Så här ser din beställning ut. Tryck på &rdquo;Skicka med mejl&rdquo;, eller kopiera och klistra in i ett mejl till oss.</div>
+        <textarea id="msgOut" readonly></textarea>
+        <div class="actions">
+          <a class="btn" id="mailtoLink" href="#">Skicka med mejl</a>
+          <button class="btn outline" id="copyMsg" type="button">Kopiera meddelande</button>
+        </div>
+        <div class="copied" id="copiedNote1">&nbsp;</div>
+      </div>
+
+      <div class="contact-row">
+        <span class="fine">Skicka till:</span>
+        <span id="emailText">kontakt.postersuf@gmail.com</span>
+        <button class="btn outline" id="copyEmail" type="button">Kopiera e-post</button>
+        <span class="copied" id="copiedNote2">&nbsp;</span>
+      </div>
+
+      <div class="contact-row">
+        <span class="fine">Swish:</span>
+        <span>123 717 02 10</span>
+        <button class="btn outline" id="copySwish" type="button">Kopiera nummer</button>
+        <span class="copied" id="copiedNote3">&nbsp;</span>
+      </div>
+
+      <div class="qr-box">
+        <svg id="swishQr" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 45 45" shape-rendering="crispEdges" role="img" aria-label="Swish QR-kod till 123 717 02 10"></svg>
+        <div class="qr-txt">
+          <b>SKANNA MED SWISH</b>
+          <span id="qrInfo">Skanna med mobilkameran eller i Swish-appen. Belopp och ordernummer fylls i automatiskt.</span>
+          <a class="btn swish-btn" id="swishLink" href="https://app.swish.nu/1/p/sw/?sw=1237170210">Öppna Swish (på mobilen)</a>
+        </div>
+      </div>
+    </section>
+
+    <section>
+      <h2 style="font-size:20px;margin-bottom:16px;">Så fungerar det</h2>
+      <div class="steps">
+        <div class="step"><div class="n">01</div><p>Välj en eller flera posters ovan.</p></div>
+        <div class="step"><div class="n">02</div><p>Kopiera meddelandet (eller öppna mejlappen) och skicka till oss.</p></div>
+        <div class="step"><div class="n">03</div><p>Vi bekräftar, skickar betalningsinfo och ordnar leverans eller avhämtning.</p></div>
+      </div>
+    </section>
+
+    <footer>
+      <div class="footer-row">
+        <span class="fine">Posters UF &middot; kontakt.postersuf@gmail.com</span>
+        <span class="swish-chip">SWISH: 123 717 02 10</span>
+      </div>
+    </footer>
+
+  </main>
+</div>
+
+<script>
+function makeQR(text){
+  var bytes = Array.from(new TextEncoder().encode(text));
+  var VERS = [null,[19,7,0],[34,10,18],[55,15,22],[80,20,26],[108,26,30]];
+  var v = 1; while(v < 5 && bytes.length > VERS[v][0]-2) v++;
+  if(bytes.length > VERS[v][0]-2) return null;
+  var DC = VERS[v][0], EC = VERS[v][1], AL = VERS[v][2], N = 17 + 4*v;
+  var bits = [];
+  function push(val, n){ for(var i=n-1;i>=0;i--) bits.push((val>>i)&1); }
+  push(4,4); push(bytes.length,8); bytes.forEach(function(b){ push(b,8); });
+  for(var i=0;i<4 && bits.length<DC*8;i++) bits.push(0);
+  while(bits.length%8) bits.push(0);
+  var cw = []; for(i=0;i<bits.length;i+=8){ var x=0; for(var j=0;j<8;j++) x=(x<<1)|bits[i+j]; cw.push(x); }
+  for(i=0; cw.length<DC; i++) cw.push(i%2?0x11:0xEC);
+  var EXP=new Array(512), LOG=new Array(256), t=1;
+  for(i=0;i<255;i++){ EXP[i]=t; LOG[t]=i; t<<=1; if(t&256) t^=0x11D; }
+  for(i=255;i<512;i++) EXP[i]=EXP[i-255];
+  function mul(a,b){ return a&&b ? EXP[LOG[a]+LOG[b]] : 0; }
+  var gen=[1];
+  for(i=0;i<EC;i++){ var ng=new Array(gen.length+1).fill(0); for(j=0;j<gen.length;j++){ ng[j]^=gen[j]; ng[j+1]^=mul(gen[j],EXP[i]); } gen=ng; }
+  var rem = cw.concat(new Array(EC).fill(0));
+  for(i=0;i<DC;i++){ var c=rem[i]; if(c) for(j=0;j<gen.length;j++) rem[i+j]^=mul(gen[j],c); }
+  var all = cw.concat(rem.slice(DC)), stream=[];
+  all.forEach(function(b){ for(var k=7;k>=0;k--) stream.push((b>>k)&1); });
+
+  var tpl=[]; for(i=0;i<N;i++) tpl.push(new Array(N).fill(null));
+  function finder(r,c){ for(var dr=-1;dr<8;dr++) for(var dc=-1;dc<8;dc++){ var rr=r+dr, cc=c+dc; if(rr<0||cc<0||rr>=N||cc>=N) continue;
+    var on = dr>=0&&dr<=6&&dc>=0&&dc<=6&&(dr==0||dr==6||dc==0||dc==6||(dr>=2&&dr<=4&&dc>=2&&dc<=4)); tpl[rr][cc]=on?1:0; } }
+  finder(0,0); finder(0,N-7); finder(N-7,0);
+  for(i=8;i<N-8;i++){ tpl[6][i]=tpl[i][6]=i%2?0:1; }
+  if(AL) for(var dr=-2;dr<=2;dr++) for(var dc=-2;dc<=2;dc++) tpl[AL+dr][AL+dc] = Math.max(Math.abs(dr),Math.abs(dc))==1?0:1;
+  tpl[N-8][8]=1;
+  for(i=0;i<9;i++){ if(tpl[8][i]===null) tpl[8][i]=0; if(tpl[i][8]===null) tpl[i][8]=0; }
+  for(i=0;i<8;i++){ if(tpl[8][N-1-i]===null) tpl[8][N-1-i]=0; if(tpl[N-1-i][8]===null) tpl[N-1-i][8]=0; }
+  var fn = tpl.map(function(row){ return row.map(function(x){ return x!==null; }); });
+  var MASKS=[function(r,c){return (r+c)%2==0;},function(r){return r%2==0;},function(r,c){return c%3==0;},function(r,c){return (r+c)%3==0;},
+    function(r,c){return (Math.floor(r/2)+Math.floor(c/3))%2==0;},function(r,c){return (r*c)%2+(r*c)%3==0;},
+    function(r,c){return ((r*c)%2+(r*c)%3)%2==0;},function(r,c){return ((r+c)%2+(r*c)%3)%2==0;}];
+  function fmt(mask){ var d=(1<<3)|mask, vv=d<<10; for(var k=14;k>=10;k--) if(vv&(1<<k)) vv^=0x537<<(k-10); return ((d<<10)|vv)^0x5412; }
+  function build(mask){
+    var m = tpl.map(function(r){ return r.slice(); }), idx=0, up=true;
+    for(var col=N-1; col>0; col-=2){ if(col==6) col--;
+      for(var n=0;n<N;n++){ var r= up? N-1-n : n;
+        for(var q=0;q<2;q++){ var cc=col-q; if(!fn[r][cc]){ m[r][cc]= idx<stream.length?stream[idx]:0; idx++; } } }
+      up=!up; }
+    var f=MASKS[mask];
+    for(var r2=0;r2<N;r2++) for(var c2=0;c2<N;c2++) if(!fn[r2][c2] && f(r2,c2)) m[r2][c2]^=1;
+    var fb=fmt(mask), b=[]; for(var k=0;k<15;k++) b.push((fb>>k)&1);
+    var p1=[[8,0],[8,1],[8,2],[8,3],[8,4],[8,5],[8,7],[8,8],[7,8],[5,8],[4,8],[3,8],[2,8],[1,8],[0,8]];
+    var p2=[[N-1,8],[N-2,8],[N-3,8],[N-4,8],[N-5,8],[N-6,8],[N-7,8],[8,N-8],[8,N-7],[8,N-6],[8,N-5],[8,N-4],[8,N-3],[8,N-2],[8,N-1]];
+    for(k=0;k<15;k++){ m[p1[k][0]][p1[k][1]]=b[14-k]; m[p2[k][0]][p2[k][1]]=b[14-k]; }
+    m[N-8][8]=1; return m;
+  }
+  function penalty(m){
+    var p=0, lines=[];
+    for(var r=0;r<N;r++){ lines.push(m[r]); var col=[]; for(var c=0;c<N;c++) col.push(m[c][r]); lines.push(col); }
+    lines.forEach(function(row){ var run=1; for(var i=1;i<N;i++){ if(row[i]==row[i-1]) run++; else { if(run>=5) p+=run-2; run=1; } } if(run>=5) p+=run-2;
+      var s=row.join(''); p+=40*((s.split('10111010000').length-1)+(s.split('00001011101').length-1)); });
+    var dark=0;
+    for(r=0;r<N;r++) for(c=0;c<N;c++){ dark+=m[r][c]; if(r<N-1&&c<N-1&&m[r][c]==m[r+1][c]&&m[r][c]==m[r][c+1]&&m[r][c]==m[r+1][c+1]) p+=3; }
+    p+=10*Math.abs(Math.floor(dark*20/(N*N))-10); return p;
+  }
+  var best=null, bp=Infinity;
+  for(var mk=0;mk<8;mk++){ var mm=build(mk), pp=penalty(mm); if(pp<bp){ bp=pp; best=mm; } }
+  return best;
+}
+function qrSvgInner(m){
+  var N=m.length, q=4, S=N+2*q, d='';
+  for(var r=0;r<N;r++){ var c=0; while(c<N){ if(m[r][c]){ var s=c; while(c<N&&m[r][c]) c++; d+='M'+(s+q)+' '+(r+q)+'h'+(c-s)+'v1h-'+(c-s)+'z'; } else c++; } }
+  return {size:S, inner:'<rect width="'+S+'" height="'+S+'" fill="#fff"/><path fill="#000" d="'+d+'"/>'};
+}
+
+(function(){
+  var ORDER;
+  function newOrder(){ ORDER = 'PUF-' + (10000 + Math.floor(Math.random()*90000)); document.getElementById('orderNr').textContent = ORDER; }
+  newOrder();
+  window.__newOrder = newOrder;
+  var qrEl = document.getElementById('swishQr');
+  var swishLink = document.getElementById('swishLink');
+  var qrInfo = document.getElementById('qrInfo');
+  function updateSwish(total){
+    var url = 'https://app.swish.nu/1/p/sw/?sw=1237170210' + (total ? '&amt=' + total + '&cur=SEK' : '') + '&msg=' + encodeURIComponent('Order ' + ORDER);
+    swishLink.href = url;
+    var m = makeQR(url);
+    if(m){ var s = qrSvgInner(m); qrEl.setAttribute('viewBox','0 0 ' + s.size + ' ' + s.size); qrEl.innerHTML = s.inner; }
+    qrInfo.textContent = total
+      ? 'Skanna med mobilkameran eller i Swish-appen. ' + total + ' kr och meddelandet "Order ' + ORDER + '" fylls i automatiskt.'
+      : 'Välj posters ovan så fylls belopp och ordernummer (' + ORDER + ') i automatiskt.';
+  }
+  window.__updateSwish = updateSwish;
+})();
+
+(function(){
+  var checks = Array.prototype.slice.call(document.querySelectorAll('.poster-check'));
+  var totalAmt = document.getElementById('totalAmt');
+  var saveNote = document.getElementById('saveNote');
+  var msgOut = document.getElementById('msgOut');
+  var mailtoLink = document.getElementById('mailtoLink');
+  var UNIT = 299, BUNDLE = 807;
+
+  function selected(){
+    return checks.filter(function(c){ return c.checked; });
+  }
+
+  function render(){
+    var sel = selected();
+    function price(c){ return c.hasAttribute('data-price') ? Number(c.getAttribute('data-price')) : UNIT; }
+    var main = sel.filter(function(c){ return !c.hasAttribute('data-price'); });
+    var extra = sel.filter(function(c){ return c.hasAttribute('data-price'); }).reduce(function(s,c){ return s + price(c); }, 0);
+    var bundle = main.length === 3;
+    var total = (bundle ? BUNDLE : main.length * UNIT) + extra;
+    totalAmt.textContent = total + ' kr';
+    saveNote.hidden = !bundle;
+
+    var names = sel.map(function(c){ return c.getAttribute('data-name'); });
+    var lines = sel.map(function(c){ return '- ' + c.getAttribute('data-name') + ' (' + price(c) + ' kr)'; });
+    var order = document.getElementById('orderNr').textContent;
+
+    var body = 'Hej Posters UF!\n\nOrdernummer: ' + order + '\n\nJag vill beställa:\n';
+    if(names.length === 0){
+      body += '(kryssa i minst en poster ovan)';
+    } else {
+      body += lines.join('\n') +
+        (bundle ? '\n\nMängdrabatt alla tre: 807 kr (−90 kr)' : '') +
+        '\n\nTotalt: ' + total + ' kr' +
+        '\n\nBetalning: Swish till 123 717 02 10, märkt med ordernumret.';
+    }
+    body += '\n\nNamn: ' + document.getElementById('fName').value.trim() +
+      '\nLeveransadress: ' + document.getElementById('fAddr').value.trim() +
+      '\nTelefon: ' + document.getElementById('fPhone').value.trim() +
+      '\n\nTack!';
+    msgOut.value = body;
+    window.__updateSwish(total);
+
+    var subject = (names.length ? 'Beställning: ' + names.join(', ') : 'Beställning Posters UF') + ' (' + order + ')';
+    mailtoLink.href = 'mailto:kontakt.postersuf@gmail.com?subject=' + encodeURIComponent(subject) + '&body=' + encodeURIComponent(body);
+  }
+
+  checks.forEach(function(c){ c.addEventListener('change', render); });
+  document.querySelectorAll('.cust').forEach(function(f){ f.addEventListener('input', render); });
+  render();
+
+  document.getElementById('clearBtn').addEventListener('click', function(){
+    checks.forEach(function(c){ c.checked = false; });
+    document.querySelectorAll('.cust').forEach(function(f){ f.value = ''; });
+    window.__newOrder();
+    render();
+  });
+
+  document.querySelectorAll('.order-btn').forEach(function(btn){
+    btn.addEventListener('click', function(){
+      var poster = btn.getAttribute('data-poster');
+      var box = checks.filter(function(c){ return c.value === poster; })[0];
+      if(box && !box.checked){ box.checked = true; render(); }
+      document.getElementById('order').scrollIntoView({behavior:'smooth', block:'start'});
+    });
+  });
+
+  function copyText(text, noteEl){
+    function ok(){ noteEl.textContent = 'Kopierat!'; setTimeout(function(){ noteEl.textContent = ' '; }, 2000); }
+    function fallback(){
+      var ta = document.createElement('textarea');
+      ta.value = text; ta.style.position = 'fixed'; ta.style.opacity = '0';
+      document.body.appendChild(ta); ta.focus(); ta.select();
+      try{ document.execCommand('copy'); }catch(e){}
+      document.body.removeChild(ta);
+      ok();
+    }
+    if(navigator.clipboard && navigator.clipboard.writeText){
+      navigator.clipboard.writeText(text).then(ok).catch(fallback);
+    } else {
+      fallback();
+    }
+  }
+
+  document.getElementById('copyMsg').addEventListener('click', function(){
+    copyText(msgOut.value, document.getElementById('copiedNote1'));
+  });
+  document.getElementById('copySwish').addEventListener('click', function(){
+    copyText('1237170210', document.getElementById('copiedNote3'));
+  });
+  document.getElementById('copyEmail').addEventListener('click', function(){
+    copyText('kontakt.postersuf@gmail.com', document.getElementById('copiedNote2'));
+  });
+})();
+</script>
+
+</body>
+</html>
