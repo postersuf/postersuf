@@ -96,6 +96,13 @@
   .qty-in{width:52px;height:44px;text-align:center;font-family:var(--font-mono);font-size:17px;color:var(--fg);background:var(--bg);border:1px solid var(--line);border-radius:6px;-moz-appearance:textfield;}
   .qty-in::-webkit-outer-spin-button,.qty-in::-webkit-inner-spin-button{-webkit-appearance:none;margin:0;}
   @media (max-width:520px){.line{flex-wrap:wrap;}.line .nm{flex-basis:100%;}}
+  .about{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.2fr);gap:48px;align-items:start;background:var(--surface);border:1px solid var(--line);border-radius:10px;padding:40px;}
+  @media (max-width:760px){.about{grid-template-columns:1fr;gap:20px;padding:28px;}}
+  .about .eyebrow{font-family:var(--font-mono);font-size:12px;letter-spacing:.14em;color:var(--accent);}
+  .about-quote{margin:10px 0 0;font-family:var(--font-display);text-transform:uppercase;font-size:clamp(28px,4vw,40px);line-height:1.08;color:var(--fg);text-wrap:balance;}
+  .about-r{display:flex;flex-direction:column;gap:12px;padding-top:24px;border-top:3px solid var(--accent);}
+  @media (min-width:761px){.about-r{border-top:none;border-left:3px solid var(--accent);padding:4px 0 4px 28px;}}
+  .about-r p{margin:0;font-size:17px;line-height:1.6;}
   .total{display:flex;justify-content:space-between;align-items:baseline;font-family:var(--font-mono);font-size:15px;padding-top:6px;border-top:1px dashed var(--line);}
   .total .amt{font-size:22px;color:var(--accent);}
   .save{font-size:12.5px;color:var(--fg-soft);}
@@ -281,8 +288,18 @@
     </section>
 
     <footer>
+      <div class="about">
+        <div class="about-l">
+          <span class="eyebrow">OM OSS</span>
+          <p class="about-quote">&rdquo;Alla ska ha råd att göra sitt rum personligt.&rdquo;</p>
+        </div>
+        <div class="about-r">
+          <p>Vi är fyra tjejer som har startat Posters UF. Vi trycker snygga posters i 50 &times; 70 cm till ett pris som passar alla.</p>
+          <p>Har du frågor? Mejla oss på <a href="mailto:kontakt.postersuf@gmail.com">kontakt.postersuf@gmail.com</a> så svarar vi så snart vi kan.</p>
+        </div>
+      </div>
       <div class="footer-row">
-        <span class="fine">Posters UF &middot; kontakt.postersuf@gmail.com</span>
+        <span class="fine">Posters UF &middot; UF-företag &middot; kontakt.postersuf@gmail.com</span>
         <span class="swish-chip">SWISH: 123 717 02 10</span>
       </div>
     </footer>
