@@ -48,7 +48,7 @@
   .hero p{max-width:46ch;color:var(--fg-soft);font-size:17px;margin-top:14px;}
   .idea{max-width:46ch;color:var(--fg);font-size:18px;font-style:italic;margin:14px 0 0;padding-left:14px;border-left:3px solid var(--accent);}
   .hero .price-line{font-family:var(--font-mono);font-size:13px;letter-spacing:.04em;color:var(--fg);margin-top:18px;}
-  .hero .price-line b{color:var(--accent);}
+  .hero .price-line b{color:var(--fg);}
 
   .grid{display:grid;grid-template-columns:repeat(3,1fr);gap:28px;}
   @media (max-width:760px){.grid{grid-template-columns:1fr;gap:36px;}}
@@ -71,7 +71,7 @@
   .card h3{font-size:22px;}
   .card .mood{color:var(--fg-soft);font-size:14.5px;font-style:italic;max-width:30ch;margin:0;}
   .card .row{display:flex;align-items:center;justify-content:space-between;gap:10px;margin-top:4px;}
-  .price-tag{font-family:var(--font-mono);font-size:14px;letter-spacing:.03em;background:var(--accent-ink);color:var(--accent);padding:4px 10px;border-radius:3px;}
+  .price-tag{font-family:var(--font-mono);font-size:14px;letter-spacing:.03em;background:transparent;color:var(--fg);border:1px solid var(--line);padding:4px 10px;border-radius:3px;}
   .btn{
     font-family:var(--font-mono);font-size:13px;letter-spacing:.03em;text-transform:uppercase;
     background:var(--fg);color:var(--bg);border:none;border-radius:3px;padding:10px 16px;cursor:pointer;
@@ -88,6 +88,14 @@
   .line label{display:flex;align-items:center;gap:10px;flex:1;cursor:pointer;font-size:15px;}
   .line input[type=checkbox]{width:18px;height:18px;accent-color:var(--accent);}
   .line .p{font-family:var(--font-mono);color:var(--fg-soft);font-size:13.5px;margin-left:auto;}
+  .line .nm{flex:1;font-size:15px;}
+  .line .p{margin-left:0!important;}
+  .qty{display:flex;align-items:center;gap:6px;}
+  .qbtn{width:44px;height:44px;border:1px solid var(--line);background:var(--bg);color:var(--fg);border-radius:6px;font-size:22px;line-height:1;cursor:pointer;font-family:var(--font-mono);}
+  .qbtn:hover{border-color:var(--fg);}
+  .qty-in{width:52px;height:44px;text-align:center;font-family:var(--font-mono);font-size:17px;color:var(--fg);background:var(--bg);border:1px solid var(--line);border-radius:6px;-moz-appearance:textfield;}
+  .qty-in::-webkit-outer-spin-button,.qty-in::-webkit-inner-spin-button{-webkit-appearance:none;margin:0;}
+  @media (max-width:520px){.line{flex-wrap:wrap;}.line .nm{flex-basis:100%;}}
   .total{display:flex;justify-content:space-between;align-items:baseline;font-family:var(--font-mono);font-size:15px;padding-top:6px;border-top:1px dashed var(--line);}
   .total .amt{font-size:22px;color:var(--accent);}
   .save{font-size:12.5px;color:var(--fg-soft);}
@@ -143,8 +151,8 @@
   <main class="stack">
 
     <section class="hero">
-      <p>Välj den som passar din vägg &mdash; eller ta alla tre och spara 90 kr.</p>
-      <div class="price-line">299 KR / ST &nbsp;&middot;&nbsp; ALLA TRE <b>807 KR</b></div>
+      <p>Välj den som passar din vägg. Alla posters trycks i 50 &times; 70 cm.</p>
+      <div class="price-line"><b>299 KR / ST</b> &nbsp;&middot;&nbsp; 50 &times; 70 CM (B &times; H)</div>
     </section>
 
     <section class="grid" id="products">
@@ -153,7 +161,7 @@
         <h3>Vinyl</h3>
         <p class="mood">Mörk, varm, analog &mdash; för rummet som vill låta högt i tysthet.</p>
         <div class="row">
-          <span class="price-tag">299 KR</span>
+          <span class="price-tag">299 KR · 50×70 CM</span>
           <button class="btn order-btn" data-poster="vinyl">Beställ</button>
         </div>
       </article>
@@ -163,7 +171,7 @@
         <h3>Espresso</h3>
         <p class="mood">Djupt brun och vaken &mdash; en kickstart för väggen.</p>
         <div class="row">
-          <span class="price-tag">299 KR</span>
+          <span class="price-tag">299 KR · 50×70 CM</span>
           <button class="btn order-btn" data-poster="espresso">Beställ</button>
         </div>
       </article>
@@ -173,7 +181,7 @@
         <h3>Expect</h3>
         <p class="mood">Ljus, spänd, väntande &mdash; plats för det som kommer.</p>
         <div class="row">
-          <span class="price-tag">299 KR</span>
+          <span class="price-tag">299 KR · 50×70 CM</span>
           <button class="btn order-btn" data-poster="expect">Beställ</button>
         </div>
       </article>
@@ -182,22 +190,38 @@
     <section class="order" id="order">
       <div>
         <h2>Beställ</h2>
-        <p class="sub">Kryssa i vad du vill ha. Tar du alla tre räknas mängdrabatten automatiskt.</p>
+        <p class="sub">Välj antal med + och &minus;. Alla posters är 50 &times; 70 cm (bredd &times; höjd) och kostar 299 kr styck.</p>
       </div>
 
       <div class="lines">
         <div class="line">
-          <label><input type="checkbox" class="poster-check" value="vinyl" data-name="Vinyl"> Vinyl</label>
-          <span class="p">299 kr</span>
+          <label for="q-vinyl" class="nm">Vinyl</label>
+          <span class="p">50×70 cm · 299 kr</span>
+          <div class="qty">
+            <button type="button" class="qbtn" data-step="-1" aria-label="En Vinyl färre">&minus;</button>
+            <input type="number" id="q-vinyl" class="qty-in" min="0" max="20" value="0" inputmode="numeric" data-key="vinyl" data-name="Vinyl">
+            <button type="button" class="qbtn" data-step="1" aria-label="En Vinyl till">+</button>
+          </div>
         </div>
         <div class="line">
-          <label><input type="checkbox" class="poster-check" value="espresso" data-name="Espresso"> Espresso</label>
-          <span class="p">299 kr</span>
+          <label for="q-espresso" class="nm">Espresso</label>
+          <span class="p">50×70 cm · 299 kr</span>
+          <div class="qty">
+            <button type="button" class="qbtn" data-step="-1" aria-label="En Espresso färre">&minus;</button>
+            <input type="number" id="q-espresso" class="qty-in" min="0" max="20" value="0" inputmode="numeric" data-key="espresso" data-name="Espresso">
+            <button type="button" class="qbtn" data-step="1" aria-label="En Espresso till">+</button>
+          </div>
         </div>
         <div class="line">
-          <label><input type="checkbox" class="poster-check" value="expect" data-name="Expect"> Expect</label>
-          <span class="p">299 kr</span>
+          <label for="q-expect" class="nm">Expect</label>
+          <span class="p">50×70 cm · 299 kr</span>
+          <div class="qty">
+            <button type="button" class="qbtn" data-step="-1" aria-label="En Expect färre">&minus;</button>
+            <input type="number" id="q-expect" class="qty-in" min="0" max="20" value="0" inputmode="numeric" data-key="expect" data-name="Expect">
+            <button type="button" class="qbtn" data-step="1" aria-label="En Expect till">+</button>
+          </div>
         </div>
+      </div>
       </div>
 
       <div class="total">
@@ -206,7 +230,6 @@
       </div>
       <div class="ordernr"><span>Ordernummer</span><b id="orderNr"></b></div>
       <div><button class="btn outline" id="clearBtn" type="button">Rensa</button></div>
-      <div class="save" id="saveNote" hidden>Mängdrabatt vid alla tre: &minus;90 kr jämfört med styckpris.</div>
 
       <div class="fields">
         <label>Namn<input type="text" id="fName" class="cust" autocomplete="name"></label>
@@ -360,38 +383,30 @@ function qrSvgInner(m){
 })();
 
 (function(){
-  var checks = Array.prototype.slice.call(document.querySelectorAll('.poster-check'));
+  var qtys = Array.prototype.slice.call(document.querySelectorAll('.qty-in'));
   var totalAmt = document.getElementById('totalAmt');
-  var saveNote = document.getElementById('saveNote');
   var msgOut = document.getElementById('msgOut');
   var mailtoLink = document.getElementById('mailtoLink');
-  var UNIT = 299, BUNDLE = 807;
+  var UNIT = 299;
 
-  function selected(){
-    return checks.filter(function(c){ return c.checked; });
-  }
+  function qty(inp){ var n = parseInt(inp.value, 10); if(isNaN(n) || n < 0) n = 0; if(n > 20) n = 20; return n; }
 
   function render(){
-    var sel = selected();
-    function price(c){ return c.hasAttribute('data-price') ? Number(c.getAttribute('data-price')) : UNIT; }
-    var main = sel.filter(function(c){ return !c.hasAttribute('data-price'); });
-    var extra = sel.filter(function(c){ return c.hasAttribute('data-price'); }).reduce(function(s,c){ return s + price(c); }, 0);
-    var bundle = main.length === 3;
-    var total = (bundle ? BUNDLE : main.length * UNIT) + extra;
+    var sel = qtys.filter(function(q){ return qty(q) > 0; });
+    var count = sel.reduce(function(s,q){ return s + qty(q); }, 0);
+    var total = count * UNIT;
     totalAmt.textContent = total + ' kr';
-    saveNote.hidden = !bundle;
 
-    var names = sel.map(function(c){ return c.getAttribute('data-name'); });
-    var lines = sel.map(function(c){ return '- ' + c.getAttribute('data-name') + ' (' + price(c) + ' kr)'; });
+    var names = sel.map(function(q){ var n = qty(q); return (n > 1 ? n + ' × ' : '') + q.getAttribute('data-name'); });
+    var lines = sel.map(function(q){ var n = qty(q); return '- ' + n + ' st ' + q.getAttribute('data-name') + ', 50 × 70 cm (' + n + ' × 299 kr = ' + (n * UNIT) + ' kr)'; });
     var order = document.getElementById('orderNr').textContent;
 
     var body = 'Hej Posters UF!\n\nOrdernummer: ' + order + '\n\nJag vill beställa:\n';
-    if(names.length === 0){
-      body += '(kryssa i minst en poster ovan)';
+    if(sel.length === 0){
+      body += '(välj minst en poster ovan)';
     } else {
       body += lines.join('\n') +
-        (bundle ? '\n\nMängdrabatt alla tre: 807 kr (−90 kr)' : '') +
-        '\n\nTotalt: ' + total + ' kr' +
+        '\n\nTotalt: ' + count + ' st, ' + total + ' kr' +
         '\n\nBetalning: Swish till 123 717 02 10, märkt med ordernumret.';
     }
     body += '\n\nNamn: ' + document.getElementById('fName').value.trim() +
@@ -405,12 +420,22 @@ function qrSvgInner(m){
     mailtoLink.href = 'mailto:kontakt.postersuf@gmail.com?subject=' + encodeURIComponent(subject) + '&body=' + encodeURIComponent(body);
   }
 
-  checks.forEach(function(c){ c.addEventListener('change', render); });
+  qtys.forEach(function(q){
+    q.addEventListener('input', render);
+    q.addEventListener('change', function(){ q.value = qty(q); render(); });
+  });
+  document.querySelectorAll('.qbtn').forEach(function(b){
+    b.addEventListener('click', function(){
+      var q = b.parentNode.querySelector('.qty-in');
+      q.value = Math.max(0, Math.min(20, qty(q) + Number(b.getAttribute('data-step'))));
+      render();
+    });
+  });
   document.querySelectorAll('.cust').forEach(function(f){ f.addEventListener('input', render); });
   render();
 
   document.getElementById('clearBtn').addEventListener('click', function(){
-    checks.forEach(function(c){ c.checked = false; });
+    qtys.forEach(function(q){ q.value = 0; });
     document.querySelectorAll('.cust').forEach(function(f){ f.value = ''; });
     window.__newOrder();
     render();
@@ -419,8 +444,8 @@ function qrSvgInner(m){
   document.querySelectorAll('.order-btn').forEach(function(btn){
     btn.addEventListener('click', function(){
       var poster = btn.getAttribute('data-poster');
-      var box = checks.filter(function(c){ return c.value === poster; })[0];
-      if(box && !box.checked){ box.checked = true; render(); }
+      var q = qtys.filter(function(x){ return x.getAttribute('data-key') === poster; })[0];
+      if(q){ q.value = Math.min(20, qty(q) + 1); render(); }
       document.getElementById('order').scrollIntoView({behavior:'smooth', block:'start'});
     });
   });
