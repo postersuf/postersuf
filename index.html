@@ -18,6 +18,9 @@
     --line:#D9C7A2;
     --accent:#A41E1E;
     --accent-ink:#F0D9C9;
+    --band:#5C1A33;
+    --band-ink:#F3E6D6;
+    --band-accent:#F2A7A0;
     --font-display:'Anton',sans-serif;
     --font-body:'Source Serif 4',Georgia,serif;
     --font-mono:'IBM Plex Mono',monospace;
@@ -35,18 +38,18 @@
     padding-right:max(16px, env(safe-area-inset-right,0px));
   }
   .wrap{max-width:980px;margin:0 auto;}
-  main.stack{display:flex;flex-direction:column;gap:56px;padding-block:40px 64px;}
+  main.stack{display:flex;flex-direction:column;gap:56px;padding-block:40px 0;}
 
   a{color:var(--accent);}
   h1,h2,h3{font-family:var(--font-display);text-transform:uppercase;letter-spacing:.01em;text-wrap:balance;margin:0;}
 
-  header.top{display:flex;align-items:baseline;justify-content:space-between;gap:12px;padding-top:28px;flex-wrap:wrap;}
+  header.top{display:flex;align-items:baseline;justify-content:space-between;gap:12px;padding:32px 0 30px;flex-wrap:wrap;background:var(--band);color:var(--band-ink);box-shadow:0 0 0 100vmax var(--band);clip-path:inset(0 -100vmax);}
   .wordmark{font-family:var(--font-display);font-size:clamp(40px,8vw,64px);line-height:1;letter-spacing:.03em;margin:0;font-weight:400;}
-  .wordmark span{color:var(--accent);}
-  .tag{font-family:var(--font-mono);font-size:11px;letter-spacing:.08em;color:var(--fg-soft);border:1px solid var(--line);padding:4px 10px;border-radius:99px;white-space:nowrap;}
+  .wordmark span{color:var(--band-accent);}
+  .tag{font-family:var(--font-mono);font-size:11px;letter-spacing:.08em;color:var(--band-ink);border:1px solid rgba(243,230,214,.5);padding:4px 10px;border-radius:99px;white-space:nowrap;}
 
   .hero p{max-width:46ch;color:var(--fg-soft);font-size:17px;margin-top:14px;}
-  .idea{max-width:46ch;color:var(--fg);font-size:18px;font-style:italic;margin:14px 0 0;padding-left:14px;border-left:3px solid var(--accent);}
+  .idea{max-width:46ch;color:var(--band-ink);font-size:18px;font-style:italic;margin:14px 0 0;padding-left:14px;border-left:3px solid var(--band-accent);}
   .hero .price-line{font-family:var(--font-mono);font-size:13px;letter-spacing:.04em;color:var(--fg);margin-top:18px;}
   .hero .price-line b{color:var(--fg);}
 
@@ -135,7 +138,10 @@
   .step .n{font-family:var(--font-display);font-size:28px;color:var(--accent);}
   .step p{margin:0;font-size:14.5px;color:var(--fg-soft);}
 
-  footer{display:flex;flex-direction:column;gap:16px;border-top:1px solid var(--line);padding-top:24px;}
+  footer{display:flex;flex-direction:column;gap:20px;padding:40px 0;background:var(--band);color:var(--band-ink);box-shadow:0 0 0 100vmax var(--band);clip-path:inset(0 -100vmax);}
+  footer .fine{color:var(--band-ink);opacity:.85;}
+  footer .swish-chip{color:var(--band-ink);border-color:rgba(243,230,214,.5);}
+  footer .about{border-color:transparent;color:var(--fg);}
   .footer-row{display:flex;justify-content:space-between;align-items:center;gap:16px;flex-wrap:wrap;}
   .swish-chip{
     display:inline-flex;align-items:center;gap:8px;border:1px dashed var(--line);color:var(--fg-soft);
@@ -228,7 +234,6 @@
             <button type="button" class="qbtn" data-step="1" aria-label="En Expect till">+</button>
           </div>
         </div>
-      </div>
       </div>
 
       <div class="total">
